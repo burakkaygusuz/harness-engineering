@@ -1,12 +1,12 @@
 # agent-plugin-setup
 
-An agent skill that guides an agent through the setup of a plugin project. The plugin has agent skills, agent files, skill evals, and plugin evals. It works with Claude Code and GitHub Copilot.
+An agent skill that guides an agent through the build of an agent harness for a code project. The harness follows the harness engineering model: guides steer the agent before it acts, and sensors check the agent after it acts. The skill packages the harness as one Agent Plugins 1.0 plugin with agent skills, agent files, skill evals, and plugin evals. It works with Claude Code and GitHub Copilot.
 
 ## Contents
 
 - `SKILL.md`: the skill. It has the workflow and the validation commands.
 - `references/`: focused files that the agent reads only when needed:
-  - `rules.md` and `structure.md`: the rules and the target folder tree.
+  - `rules.md` and `harness.md`: the rules, and the harness model with the target folder tree.
   - `procedure-*.md`: the steps for each Part of the setup.
   - `sources.md`: the official documents.
 
