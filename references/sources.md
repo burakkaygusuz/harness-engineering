@@ -35,6 +35,7 @@ The skill follows these official documents.
 
 - GitHub Copilot CLI plugin reference: `https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference`
 - GitHub Copilot custom agents configuration (agent file fields, `model`): `https://docs.github.com/en/copilot/reference/custom-agents-configuration`
+- GitHub Copilot CLI custom agents (subagents and project instructions): `https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli`
 - GitHub Copilot hooks reference: `https://docs.github.com/en/copilot/reference/hooks-reference`
 - GitHub Copilot custom instructions (`AGENTS.md`, `CLAUDE.md`): `https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions`
 - GitHub Copilot custom instructions support (which client reads which file): `https://docs.github.com/en/copilot/reference/custom-instructions-support`
