@@ -25,7 +25,8 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 
 - Use the root `plugin.json` for the Agent Plugins format. The schema is closed. Use only the fields that the schema lists: `$schema`, `name`, `version`, `description`, `author`, `homepage`, `repository`, `license`, `keywords`, and `extensions`. Put client data only in `extensions`, under a reverse-domain namespace.
 - Use `.claude-plugin/plugin.json` for Claude Code. Claude Code reads only this file and ignores the root `plugin.json`.
-- Copilot clients use the root `plugin.json` when it has the Agent Plugins `$schema`. This file has priority over `.claude-plugin/plugin.json`.
+- Set `$schema` in the root `plugin.json` to the exact URL `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`. Copilot CLI reads the Agent Plugins format only when the value is exact. Without the value, Copilot CLI reads the legacy format. Copilot CLI rejects an Agent Plugins version that it does not support.
+- Copilot CLI gives the root `plugin.json` priority over `.claude-plugin/plugin.json`. VS Code finds the format from the root manifest and the format-specific paths.
 - Keep the same version number in both manifests.
 - Change the version number for each release. Claude Code keeps each user on the same version until the field changes.
 
@@ -49,10 +50,13 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 
 - Do not add an MCP file if you do not need one.
 - Claude Code reads `.mcp.json`. The Agent Plugins format uses `mcp.json`. The two formats are different.
+- Set `$schema` in `mcp.json` to the Agent Plugins MCP schema of the same version as `plugin.json`. Copilot CLI requires the two versions to be the same.
+- Write the plugin root variable only in `args` and `env` values. Use `${PLUGIN_ROOT}` in `mcp.json` and `${CLAUDE_PLUGIN_ROOT}` in `.mcp.json`. The Agent Plugins format does not replace the variable in `command`. Claude Code does not replace it in `cwd`.
 
 ## Skill content
 
 - Keep each `SKILL.md` file under 500 lines and under 5,000 tokens.
+- Use only these fields in the frontmatter of `SKILL.md`: `name`, `description`, `license`, `allowed-tools`, `metadata`, and `compatibility`. `skills-ref validate` fails on other fields.
 - Add a `## Gotchas` section to `SKILL.md` for facts that the agent gets wrong without a warning. Add each correction from the evals to this section.
 - Cut each instruction that the agent follows correctly without it.
 - If a skill makes the agent change files or data, add a step that checks the result. Make the agent fix the problem and check again until the check passes.
@@ -60,7 +64,7 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 - Tell the agent in `SKILL.md` when to read each reference file.
 - Write relative paths from the skill folder in links to reference files. Use one folder level.
 - Claude Code runs commands in the working directory of the session, not in the skill folder. In a command that runs a bundled script, write the path with `${CLAUDE_SKILL_DIR}`, for example `python3 ${CLAUDE_SKILL_DIR}/scripts/<script-name>.py`. Claude Code replaces the variable in the text of the skill. Use `${CLAUDE_PLUGIN_ROOT}` only for files that several skills share. The folder of the plugin changes with each version. Do not write it as a fixed path.
-- Copilot defines `${PLUGIN_ROOT}` for hooks and MCP files only. It defines no variable for skill text.
+- Copilot CLI replaces `${PLUGIN_ROOT}` only in MCP and LSP server configurations and in the `mcp-servers` field of a plugin agent. VS Code replaces it in hook commands and MCP server configurations. Neither client defines a variable for skill text.
 
 ## Scripts
 

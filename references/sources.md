@@ -10,6 +10,7 @@ The skill follows these official documents.
 - Agent Skills eval guide: `https://agentskills.io/skill-creation/evaluating-skills`
 - Agent Skills best practices: `https://agentskills.io/skill-creation/best-practices`
 - Agent Skills description guide: `https://agentskills.io/skill-creation/optimizing-descriptions`
+- skills-ref validator (allowed frontmatter fields): `https://github.com/agentskills/agentskills/blob/main/skills-ref/src/skills_ref/validator.py`
 - Agent Plugins specification 1.0: `https://agent-plugins.org/specification`
 - Agent Plugins schema 1.0.0: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`
 - Agent Plugins example: `https://github.com/agentplugins/agent-plugins-example`
@@ -43,6 +44,7 @@ The skill follows these official documents.
 ## VS Code
 
 - VS Code agent plugins page: `https://code.visualstudio.com/docs/agent-customization/agent-plugins`
+- VS Code agent plugin reference (formats, `${PLUGIN_ROOT}`): `https://code.visualstudio.com/docs/agents/reference/agent-plugin-reference`
 - VS Code custom agents page: `https://code.visualstudio.com/docs/agent-customization/custom-agents`
 - VS Code subagents page: `https://code.visualstudio.com/docs/agents/run/subagents`
 - VS Code custom agent file reference (`model`, `model-policy`): `https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference`
