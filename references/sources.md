@@ -25,6 +25,7 @@ The skill follows these official documents.
 - Claude Code plugin eval page: `https://code.claude.com/docs/en/plugin-evals`
 - Claude Code marketplace reference: `https://code.claude.com/docs/en/plugins/marketplace-reference`
 - Claude Code publish page: `https://code.claude.com/docs/en/plugins/publish`
+- Claude subagents (agent file fields, `model`): `https://code.claude.com/docs/en/sub-agents`
 - Claude memory (`CLAUDE.md`, `AGENTS.md`, imports): `https://code.claude.com/docs/en/memory`
 - Claude hooks: `https://code.claude.com/docs/en/hooks`
 - Claude settings: `https://code.claude.com/docs/en/settings`
@@ -33,6 +34,7 @@ The skill follows these official documents.
 ## GitHub Copilot
 
 - GitHub Copilot CLI plugin reference: `https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference`
+- GitHub Copilot custom agents configuration (agent file fields, `model`): `https://docs.github.com/en/copilot/reference/custom-agents-configuration`
 - GitHub Copilot hooks reference: `https://docs.github.com/en/copilot/reference/hooks-reference`
 - GitHub Copilot custom instructions (`AGENTS.md`, `CLAUDE.md`): `https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions`
 - GitHub Copilot custom instructions support (which client reads which file): `https://docs.github.com/en/copilot/reference/custom-instructions-support`
@@ -42,6 +44,7 @@ The skill follows these official documents.
 - VS Code agent plugins page: `https://code.visualstudio.com/docs/agent-customization/agent-plugins`
 - VS Code custom agents page: `https://code.visualstudio.com/docs/agent-customization/custom-agents`
 - VS Code subagents page: `https://code.visualstudio.com/docs/agents/run/subagents`
+- VS Code custom agent file reference (`model`, `model-policy`): `https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference`
 
 ## Harness engineering
 
