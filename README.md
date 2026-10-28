@@ -1,4 +1,4 @@
-# agent-plugin-setup
+# harness-engineering
 
 An agent skill that guides an agent through the build of an agent harness for a code project. The harness follows the harness engineering model: guides steer the agent before it acts, and sensors check the agent after it acts. The skill packages the harness as one Agent Plugins 1.0 plugin with agent skills, agent files, skill evals, and plugin evals. It works with Claude Code and GitHub Copilot.
 
@@ -19,11 +19,11 @@ An agent skill that guides an agent through the build of an agent harness for a 
 
 ## Install
 
-Copy the `agent-plugin-setup` folder into the skills folder of your client. For Claude Code, use `~/.claude/skills/`.
+Copy the `harness-engineering` folder into the skills folder of your client. For Claude Code, use `~/.claude/skills/`.
 
 ## Use
 
-Ask the agent to set up an agent plugin project. The agent loads the skill and follows the procedure in `references/`.
+Ask the agent to set up an agent harness for your project. The agent loads the skill and follows the procedure in `references/`.
 
 ## License
 

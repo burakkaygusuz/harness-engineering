@@ -1,4 +1,4 @@
-name: agent-plugin-setup ci
+name: harness-engineering ci
 
 on:
   push:

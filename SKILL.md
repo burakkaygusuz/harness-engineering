@@ -1,10 +1,10 @@
 ---
-name: agent-plugin-setup
+name: harness-engineering
 description: Use this skill when the user wants to set up, extend, or check an agent harness for a code project. Also use it when the user wants coding agents to follow project rules. Also use it to scaffold, validate, or release the Claude Code and GitHub Copilot plugin that carries the harness. It packages skills, reviewer agents, and evals as one Agent Plugins 1.0 plugin.
 compatibility: Requires Python 3.11 or later. Uses the claude CLI (version 2.1.289 or later) and skills-ref (a Python package) for validation. The plugin evals also need Git 2.31 or later.
 ---
 
-# Agent plugin setup
+# Harness engineering
 
 Use this skill to build an agent harness for one code project. A harness is everything in an agent except the model. The harness has guides, which steer the agent before it acts, and sensors, which observe the agent after it acts. The plugin carries the harness for Claude Code and GitHub Copilot. Read `references/harness.md` for the model and the mapping from each harness part to a file.
 
