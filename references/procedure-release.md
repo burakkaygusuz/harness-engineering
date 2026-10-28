@@ -59,7 +59,7 @@
 
 1. Increase the `version` field in both manifests.
 2. Write the changes in `CHANGELOG.md`.
-3. Run `scripts/sync-agents.sh --check` and the validation commands again.
+3. Run `python3 scripts/sync-agents.py --check` and the validation commands again.
 4. Run `claude plugin details <plugin-name>`. Check the token cost of the descriptions.
 
 ## Final checklist

@@ -59,17 +59,17 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 - Put long text in the `references/` folder.
 - Tell the agent in `SKILL.md` when to read each reference file.
 - Write relative paths from the skill folder in links to reference files. Use one folder level.
-- Claude Code runs commands in the working directory of the session, not in the skill folder. In a command that runs a bundled script, write the path with `${CLAUDE_SKILL_DIR}`, for example `node ${CLAUDE_SKILL_DIR}/scripts/<script-name>.mjs`. Claude Code replaces the variable in the text of the skill. Use `${CLAUDE_PLUGIN_ROOT}` only for files that several skills share. The folder of the plugin changes with each version. Do not write it as a fixed path.
+- Claude Code runs commands in the working directory of the session, not in the skill folder. In a command that runs a bundled script, write the path with `${CLAUDE_SKILL_DIR}`, for example `python3 ${CLAUDE_SKILL_DIR}/scripts/<script-name>.py`. Claude Code replaces the variable in the text of the skill. Use `${CLAUDE_PLUGIN_ROOT}` only for files that several skills share. The folder of the plugin changes with each version. Do not write it as a fixed path.
 - Copilot defines `${PLUGIN_ROOT}` for hooks and MCP files only. It defines no variable for skill text.
 
 ## Scripts
 
-- Write each script in Node.js. Use the `.mjs` extension for JavaScript files.
-- Shell scripts are allowed for `fixture.sh` and `sync-agents.sh`. Claude Code requires `fixture.sh` to be a Bash script.
-- Use only Node.js built-in modules. Do not add packages. Then the plugin has no install step and no `package.json` file.
+- Write each script in Python. Use the `.py` extension. Run it with `python3`.
+- A shell script is allowed only for `fixture.sh`. Claude Code requires `fixture.sh` to be a Bash script.
+- Use only the Python standard library. Do not add packages. Then the plugin has no install step, no `requirements.txt`, and no `pyproject.toml`.
 - Write the data to standard output. Write messages and errors to standard error.
 - Declare no dependencies. The plugin has nothing to install.
-- Write the Node.js version in the `compatibility` field of each `SKILL.md` file that runs a Node.js script.
+- Write the Python version in the `compatibility` field of each `SKILL.md` file that runs a Python script.
 
 ## Evals
 

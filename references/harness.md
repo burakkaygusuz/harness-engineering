@@ -60,7 +60,7 @@ This is the tree of the plugin that the skill generates today. Each part has a h
 │   └── <skill-name>/                  # folder name = `name` in SKILL.md
 │       ├── SKILL.md                   # guide: instructions for the agent, under 500 lines
 │       ├── scripts/
-│       │   └── <script-name>.mjs      # script the skill runs: shebang, --help, JSON output
+│       │   └── <script-name>.py       # script the skill runs: shebang, --help, JSON output
 │       ├── references/
 │       │   ├── role.md                # source text for the reviewer agent body
 │       │   └── <topic>.md             # guide: read only when the skill needs it
@@ -96,7 +96,7 @@ This is the tree of the plugin that the skill generates today. Each part has a h
 │   └── results/                       # output of each run, not part of the harness
 │
 ├── scripts/
-│   └── sync-agents.sh                 # build step: copies role.md into agent bodies; --check finds drift
+│   └── sync-agents.py                 # build step: copies role.md into agent bodies; --check finds drift
 ├── .gitignore                         # packaging: evals/results/ and .workspace/
 ├── README.md                          # documentation for people
 ├── CHANGELOG.md                       # steering loop: one entry for each release
@@ -112,4 +112,4 @@ Each client reads these paths:
 
 In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>` and `<topic>` are names that you choose.
 
-The scripts use Node.js 22.12 or later. The project has no Python code and no packages.
+The scripts use Python 3.11 or later and only the Python standard library. The plugin has no packages. `fixture.sh` is the only shell script, because `claude plugin eval` requires Bash.

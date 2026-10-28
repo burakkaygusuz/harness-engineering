@@ -1,7 +1,7 @@
 ---
 name: agent-plugin-setup
 description: Use this skill when the user wants to set up, extend, or check an agent harness for a code project. Also use it when the user wants coding agents to follow project rules. Also use it to scaffold, validate, or release the Claude Code and GitHub Copilot plugin that carries the harness. It packages skills, reviewer agents, and evals as one Agent Plugins 1.0 plugin.
-compatibility: Requires Node.js 22.12 or later. Uses the claude CLI (version 2.1.289 or later) and skills-ref (a Python package) for validation. The plugin evals also need Git 2.31 or later.
+compatibility: Requires Python 3.11 or later. Uses the claude CLI (version 2.1.289 or later) and skills-ref (a Python package) for validation. The plugin evals also need Git 2.31 or later.
 ---
 
 # Agent plugin setup
@@ -24,7 +24,7 @@ The examples in the reference files use placeholders such as `<plugin-name>` and
    - Parts G and H, validation, release, and the final checklist: `references/procedure-release.md`
 6. After each Part, check the result before you start the next Part.
 7. Write all new text in the style of ASD-STE100 Simplified Technical English. Use short sentences, the imperative form, and the active voice.
-8. Write scripts in Node.js. Use the `.mjs` extension. Do not write Python. Shell scripts are allowed only where `references/rules.md` says so.
+8. Write scripts in Python. Use the `.py` extension. Shell scripts are allowed only where `references/rules.md` says so.
 
 ## Validation
 
@@ -44,7 +44,7 @@ Run `claude plugin eval . --scaffold --allow-tools Bash Write Edit` only when th
 - Claude Code reads `agents/`. Copilot reads `com.github.copilot/agents/`. Each client ignores the other folder.
 - Claude Code runs commands in the working directory of the session, not in the skill folder. Write the path to a bundled script with `${CLAUDE_SKILL_DIR}`. Use `${CLAUDE_PLUGIN_ROOT}` only for files that several skills share. Copilot defines no variable for skill text.
 - Grant `Bash` to the plugin evals only with `--allow-tools`. Do not list it in `prompt.md`.
-- Add no packages. The plugin must have no `package.json`.
+- Add no packages. Use only the Python standard library. The plugin has nothing to install.
 
 ## Sources
 

@@ -47,6 +47,10 @@ The skill follows these official documents.
 - VS Code subagents page: `https://code.visualstudio.com/docs/agents/run/subagents`
 - VS Code custom agent file reference (`model`, `model-policy`): `https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference`
 
+## Python
+
+- Python versions (support status, end of life): `https://devguide.python.org/versions/`
+
 ## Harness engineering
 
 Three rules apply to this section:

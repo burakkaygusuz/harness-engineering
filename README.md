@@ -12,10 +12,10 @@ An agent skill that guides an agent through the build of an agent harness for a 
 
 ## Requirements
 
-- Node.js 22.12 or later.
+- Python 3.11 or later.
 - The `claude` CLI, version 2.1.289 or later, for `claude plugin validate`. Use version 2.1.269 or later for `claude plugin eval`.
 - Git 2.31 or later, for `claude plugin eval`. The eval also needs the operating system sandbox: `bubblewrap` and `socat` on Linux, WSL2 on Windows.
-- `skills-ref`, to validate the skills. It is a Python package. Install it from the `skills-ref` folder of the `agentskills/agentskills` repository. Python 3 is required for this tool only.
+- `skills-ref`, to validate the skills. It is a Python package. Install it from the `skills-ref` folder of the `agentskills/agentskills` repository.
 
 ## Install
 
