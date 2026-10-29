@@ -32,6 +32,7 @@ The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of th
 
 | Harness part | Role | Claude Code | Copilot CLI | Location |
 | --- | --- | --- | --- | --- |
+| Project instructions | guide | `CLAUDE.md` with `@AGENTS.md`, or `AGENTS.md` | `AGENTS.md` | Project root, outside the plugin |
 | Skills | guide | `skills/` | `skills/` | Plugin, portable |
 | MCP servers | guide tool, optional | `.mcp.json` | `mcp.json` | Plugin, portable |
 | Reviewer agent | inferential sensor | `agents/<agent>.md` | `com.github.copilot/agents/<agent>.agent.md` | Plugin, client-specific |
@@ -115,5 +116,7 @@ Each client reads these paths:
 - Cursor reads agents from `.cursor/agents/`. Codex reads only TOML agents from `.codex/agents/`. A plugin does not carry them.
 - Codex reads its marketplace from `.agents/plugins/marketplace.json`. The ChatGPT desktop app installs the plugin from it.
 - The skill generates no Cursor files and no Codex agent files. For these clients it supports the skills and `mcp.json` of the plugin.
+
+`AGENTS.md` is not in the tree. It lives in the project root, next to the plugin root files, and the plugin does not carry it.
 
 In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose.

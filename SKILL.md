@@ -24,6 +24,7 @@ The examples in the reference files use placeholders such as `<plugin-name>` and
    - Part D, MCP servers (guide tools, optional): `references/procedure-mcp.md`
    - Part E, agent files (inferential sensors): `references/procedure-agents.md`
    - Parts F and G, skill evals and plugin evals: `references/procedure-evals.md`
+   - Part J, `AGENTS.md` (project guide): `references/procedure-agents-md.md`
    - Parts H and I, validation, release, and the final checklist: `references/procedure-release.md`
 6. After each Part, check the result before you start the next Part.
 
@@ -49,4 +50,5 @@ Run `claude plugin eval . --scaffold --allow-tools Bash Write Edit` only when th
 - Grant `Bash` to the plugin evals only with `--allow-tools`. Do not list it in `prompt.md`.
 - Add no packages to the scripts. Use only the Python standard library. The one exception is an MCP server in `servers/`. It declares the `mcp` SDK in its script header.
 - Do not write a `print` call in an MCP server. Standard output carries only MCP messages.
+- Claude Code reads `AGENTS.md` only when the project has no `CLAUDE.md`. If `CLAUDE.md` exists, import `AGENTS.md` with `@AGENTS.md`.
 - Apply the rules in `references/rules.md`, section "MCP servers", before you add an MCP server. The default outcome is no server.

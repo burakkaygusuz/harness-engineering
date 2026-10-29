@@ -65,3 +65,4 @@
 - [ ] Both clients show the skills and the agents.
 - [ ] A marketplace install shows the skills and the agents in Claude Code, Copilot CLI, and VS Code.
 - [ ] A marketplace install shows the skills in Codex.
+- [ ] `AGENTS.md` is in the project root, and each command in it runs.

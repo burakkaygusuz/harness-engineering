@@ -94,6 +94,15 @@ Write all new text in the style of ASD-STE100 Simplified Technical English, Issu
 - An MCP server that you write is the one exception. It uses the official Python SDK for MCP, version 2.x (`mcp>=2,<3`). Declare the SDK in the script header (PEP 723). Lock it with `uv lock --script`. It writes only MCP messages to standard output and writes logs to standard error.
 - Write the Python version in the `compatibility` field of each `SKILL.md` file that runs a Python script.
 
+## AGENTS.md
+
+- Put `AGENTS.md` in the project root. Do not put it in the plugin. It is not a plugin component.
+- Copilot CLI, Cursor, and Codex read `AGENTS.md`. Claude Code version 2.1.277 or later reads it only when no `CLAUDE.md` or `CLAUDE.local.md` exists in the working directory or above it.
+- Keep one source of instructions. If the project has `CLAUDE.md`, add the line `@AGENTS.md` to it. Do not copy the text.
+- Do not create `CLAUDE.md` only to import `AGENTS.md`.
+- Codex reads at most 32 KiB of project instructions by default. Keep the file under this size.
+- Write only what the agent cannot find in the code. Do not describe the folder tree.
+
 ## Evals
 
 - Put the skill evals in `skills/<name>/evals/`.
