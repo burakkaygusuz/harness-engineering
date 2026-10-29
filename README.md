@@ -30,6 +30,10 @@ Copy the `harness-engineering` folder into the skills folder of your client:
 
 Ask the agent to set up an agent harness for your project. The agent loads the skill and follows the procedure in `references/`.
 
+## Versioning
+
+The version of the skill is the `metadata.version` field in `SKILL.md`. Do not edit it by hand. On each push to `main`, the release workflow reads the conventional commits since the last tag and calculates the next version: `fix` raises the patch number, `feat` raises the minor number, and a breaking change raises the major number. Then the workflow writes the version to `SKILL.md`, pushes a `chore(release)` commit, and publishes a GitHub release with a tag. A push with no `fix`, `feat`, or breaking commit makes no release.
+
 ## Style
 
 The skill text follows ASD-STE100 Simplified Technical English, Issue 9. The author did not compare each word with the official dictionary. A full check needs the official dictionary from the ASD-STE100 website.

@@ -1,0 +1,55 @@
+name: harness-engineering release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Calculate the next version
+        id: semver
+        uses: ietf-tools/semver-action@c90370b2958652d71c06a3484129a4d423a6d8a8 # v1.11.0
+        with:
+          token: ${{ github.token }}
+          branch: main
+          fallbackTag: v1.0.0
+          noNewCommitBehavior: silent
+          noVersionBumpBehavior: silent
+      - name: Update the version in SKILL.md
+        if: steps.semver.outputs.nextStrict != '' && steps.semver.outputs.bump != 'none'
+        env:
+          NEXT_VERSION: ${{ steps.semver.outputs.nextStrict }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, re
+          p = pathlib.Path('SKILL.md')
+          text, n = re.subn(r'^(  version: ).*$', rf'\g<1>"{os.environ["NEXT_VERSION"]}"', p.read_text(encoding='utf-8'), count=1, flags=re.M)
+          assert n == 1, 'metadata.version not found in SKILL.md'
+          p.write_text(text, encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add SKILL.md
+          git diff-index --quiet HEAD || git commit -m "chore(release): bump version to ${NEXT_VERSION} [skip ci]"
+          git push origin main
+      - name: Publish the GitHub release and tag
+        if: steps.semver.outputs.next != '' && steps.semver.outputs.bump != 'none'
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          tag_name: ${{ steps.semver.outputs.next }}
+          name: Release ${{ steps.semver.outputs.next }}
+          generate_release_notes: true
+          make_latest: true
+          token: ${{ github.token }}
