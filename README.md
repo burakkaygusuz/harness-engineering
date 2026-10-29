@@ -20,7 +20,10 @@ An agent skill that guides an agent through the build of an agent harness for a 
 
 ## Install
 
-Copy the `harness-engineering` folder into the skills folder of your client. For Claude Code, use `~/.claude/skills/`.
+Copy the `harness-engineering` folder into the skills folder of your client:
+
+- Claude Code: `~/.claude/skills/`.
+- GitHub Copilot CLI: `~/.copilot/skills/` or `~/.agents/skills/`.
 
 ## Use
 
