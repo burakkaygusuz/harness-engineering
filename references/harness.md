@@ -107,5 +107,10 @@ Each client reads these paths:
 - Agent Plugins clients and Copilot read `plugin.json`, `skills/`, `mcp.json`, and `com.github.copilot/`.
 - Claude Code reads `.claude-plugin/`, `skills/`, `agents/`, and `.mcp.json`.
 - Both clients read `.claude-plugin/marketplace.json`.
+- Cursor and Codex read the root `plugin.json` and `skills/`. Both also read `AGENTS.md`.
+- Cursor and Codex read `mcp.json`. Cursor does not replace `${PLUGIN_ROOT}` in it. No Codex document confirms the replacement.
+- Cursor reads agents from `.cursor/agents/`. Codex reads only TOML agents from `.codex/agents/`. A plugin does not carry them.
+- Codex reads its marketplace from `.agents/plugins/marketplace.json`.
+- The skill generates none of the Cursor and Codex files in the last three items. It supports the skills of the plugin in Cursor and Codex.
 
 In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose.
