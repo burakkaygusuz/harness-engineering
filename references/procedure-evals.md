@@ -1,6 +1,6 @@
 # Procedure: evals
 
-## Part E. Add the skill evals
+## Part F. Add the skill evals
 
 Do steps 1 to 5 for each skill.
 
@@ -50,7 +50,7 @@ Do steps 1 to 5 for each skill.
 
 5. Write the file `skills/<skill-name>/evals/validation_queries.json` with different queries. Do not use the same queries in both files.
 
-## Part F. Add the plugin evals
+## Part G. Add the plugin evals
 
 Do steps 1 to 5 for each skill. Do steps 6 to 8 one time.
 

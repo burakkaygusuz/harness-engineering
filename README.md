@@ -15,6 +15,8 @@ An agent skill that guides an agent through the build of an agent harness for a 
 - Python 3.11 or later.
 - The `claude` CLI, version 2.1.289 or later, for `claude plugin validate`. Use version 2.1.269 or later for `claude plugin eval`.
 - Git 2.31 or later, for `claude plugin eval`. The eval also needs the operating system sandbox: `bubblewrap` and `socat` on Linux, WSL2 on Windows.
+- `uv`, for an MCP server that you write.
+- Node.js 22.23.4, 24.22.1, or 26.12.1 or later, for the MCP check. The check runs the MCP Inspector with `npx`.
 - `skills-ref`, to validate the skills. It is a Python package. Install it from the `skills-ref` folder of the `agentskills/agentskills` repository.
 
 ## Install

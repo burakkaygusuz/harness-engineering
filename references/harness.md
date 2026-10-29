@@ -33,9 +33,10 @@ This interpretation is ours. The plugin packages the harness as one Agent Plugin
 | Harness part | Role | Claude Code | Copilot CLI | Location |
 | --- | --- | --- | --- | --- |
 | Skills | guide | `skills/` | `skills/` | Plugin, portable |
-| MCP tools | guide or sensor | `.mcp.json` | `mcp.json` | Plugin, portable |
+| MCP servers | guide tool, optional | `.mcp.json` | `mcp.json` | Plugin, portable |
 | Reviewer agent | inferential sensor | `agents/<agent>.md` | `com.github.copilot/agents/<agent>.agent.md` | Plugin, client-specific |
 | Skill evals | test for the guide | `skills/<skill>/evals/` | Same | Plugin, inside `skills/` |
+| MCP check | computational sensor for the MCP files | `scripts/check-mcp.py` | Same | Plugin repo, not a component |
 | Plugin evals | test for the harness | `evals/` (`claude plugin eval`) | None | Plugin repo, not a component |
 | Steering loop | process | None | None | `CHANGELOG.md` in the plugin root |
 
@@ -44,6 +45,8 @@ Notes:
 - Plugin agents cannot define `hooks`, `mcpServers`, or `permissionMode`. Client-specific agent files carry that configuration. [Claude Code plugin reference]
 - Copilot CLI reads its client-specific files from `com.github.copilot/`. [GitHub Copilot CLI plugin reference]
 - Claude Code reads `.claude-plugin/`, `agents/`, and `.mcp.json`. [Claude Code plugin reference]
+- An MCP server starts in the plugin root. It gets the project folder from a tool parameter. [Agent Plugins specification] [MCP deprecated features]
+- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake. Copilot CLI before v1.0.81 predates 2026-07-28 support. [Claude MCP] [GitHub Copilot CLI release 1.0.81]
 
 ## Plugin tree
 
@@ -78,8 +81,11 @@ This is the tree of the plugin that the skill generates today. Each part has a h
 ├── com.github.copilot/                # Copilot-only files
 │   └── agents/
 │       └── <agent-name>.agent.md      # inferential sensor: frontmatter + body from role.md
-├── mcp.json                           # guide or sensor: Agent Plugins MCP file, optional
-├── .mcp.json                          # guide or sensor: Claude Code MCP file, optional
+├── mcp.json                           # guide tool: Agent Plugins MCP file, optional
+├── .mcp.json                          # guide tool: Claude Code MCP file, optional
+├── servers/                           # only for a server that you write
+│   ├── <server-name>.py               # MCP server: SDK 2.x, PEP 723 header
+│   └── <server-name>.py.lock          # from `uv lock --script`
 │
 ├── evals/                             # sensor for the harness: claude plugin eval format
 │   ├── <skill-name>-task/
@@ -96,7 +102,8 @@ This is the tree of the plugin that the skill generates today. Each part has a h
 │   └── results/                       # output of each run, not part of the harness
 │
 ├── scripts/
-│   └── sync-agents.py                 # build step: copies role.md into agent bodies; --check finds drift
+│   ├── sync-agents.py                 # build step: copies role.md into agent bodies; --check finds drift
+│   └── check-mcp.py                   # sensor: MCP servers on both protocol eras; mcp.json vs .mcp.json drift
 ├── .gitignore                         # packaging: evals/results/ and .workspace/
 ├── README.md                          # documentation for people
 ├── CHANGELOG.md                       # steering loop: one entry for each release
@@ -110,6 +117,6 @@ Each client reads these paths:
 - Both clients read `.claude-plugin/marketplace.json`.
 - The `evals/` folder at the root is for `claude plugin eval`. The folders `skills/<skill-name>/evals/` are for the Agent Skills eval format. The two eval systems use different file formats.
 
-In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>` and `<topic>` are names that you choose.
+In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose. `<inspector-version>` is the Inspector version that the MCP check pins.
 
-The scripts use Python 3.11 or later and only the Python standard library. The plugin has no packages. `fixture.sh` is the only shell script, because `claude plugin eval` requires Bash.
+The scripts use Python 3.11 or later and only the Python standard library. An MCP server in `servers/` is the one exception. It declares the MCP SDK in its script header, and `uv` installs it. `fixture.sh` is the only shell script, because `claude plugin eval` requires Bash.

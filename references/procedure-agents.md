@@ -1,6 +1,6 @@
 # Procedure: agent files
 
-## Part D. Add the agent files
+## Part E. Add the agent files
 
 Do steps 1 to 4 for each agent. Give an agent only the tools that its role needs.
 

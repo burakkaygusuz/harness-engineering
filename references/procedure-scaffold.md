@@ -13,6 +13,8 @@
    mkdir -p evals/<skill-name>-task/graders
    ```
 
+3. Only for a Python MCP server, run `mkdir -p servers` in the project root. Skip this step for an existing server.
+
 ## Part B. Write the manifests
 
 All three files use the same `name` and the same `description`.
