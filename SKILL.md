@@ -3,7 +3,7 @@ name: harness-engineering
 description: Use this skill when the user wants to set up, extend, or check an agent harness for a code project. Also use it when the user wants coding agents to follow project rules. Also use it to scaffold, validate, or release the Claude Code and GitHub Copilot plugin that carries the harness. It packages skills, MCP servers, reviewer agents, and evals as one Agent Plugins 1.0 plugin.
 compatibility: Requires Python 3.11 or later. Uses the claude CLI (version 2.1.289 or later) and skills-ref (a Python package) for validation. The plugin evals also need Git 2.31 or later. An MCP server needs uv, and the MCP check needs Node.js 22.23.4, 24.22.1, or 26.12.1 or later.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Harness engineering
