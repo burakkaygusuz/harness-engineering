@@ -75,7 +75,7 @@ Do steps 1 to 5 for each skill. Do steps 6 to 8 one time.
      scaffold_script: fixture.sh
    ```
 
-3. Write the script `evals/<skill-name>-task/fixture.sh`. A grant of `Bash` comes only from `--allow-tools` in the eval command. Claude Code requires a Bash script. Make the script write the input files into the workspace.
+3. Write the script `evals/<skill-name>-task/fixture.sh`. Claude Code requires a Bash script. Make the script write the input files into the workspace.
 4. Create the grader `evals/<skill-name>-task/graders/criteria.md`:
 
    ```markdown

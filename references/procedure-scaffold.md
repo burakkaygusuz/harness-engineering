@@ -13,11 +13,9 @@
    mkdir -p evals/<skill-name>-task/graders
    ```
 
-3. Only for a Python MCP server, run `mkdir -p servers` in the project root. Skip this step for an existing server.
+## Part B. Write the manifests and the packaging files
 
-## Part B. Write the manifests
-
-All three files use the same `name` and the same `description`.
+The three manifests use the same `name` and the same `description`.
 
 1. Create the file `plugin.json` in the project root. Use this content:
 
@@ -54,3 +52,5 @@ All three files use the same `name` and the same `description`.
      "plugins": [{ "name": "<plugin-name>", "source": "./" }]
    }
    ```
+
+4. Create `LICENSE` with the full text of the license in `plugin.json`. Create `README.md`. In it, write what the plugin does and how to install it. Create `CHANGELOG.md` with one entry for version `0.1.0`.

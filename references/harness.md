@@ -18,7 +18,7 @@ Each guide and sensor is one of two types:
 - Computational. Deterministic and fast. Examples: tests, linters, type checkers.
 - Inferential. Semantic and slower. Examples: AI code review, an LLM as judge.
 
-Write sensor output for the model. A failing check tells the agent how to fix the problem.
+Write sensor output for the model. A check that fails tells the agent how to fix the problem.
 
 Put checks early. Fast checks run before a commit. Slow checks run later.
 
@@ -26,7 +26,7 @@ The steering loop: when an issue happens more than once, improve the guides or s
 
 ## The plugin as harness
 
-The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of the plugin maps to a harness role (see the table below). Böckeler describes "harness templates" as a possible future form: "a bundle of guides and sensors that leash a coding agent to the structure, conventions and tech stack of a topology."
+The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of the plugin maps to a harness role (see the table below).
 
 ## Mapping: harness part to file
 
@@ -39,14 +39,6 @@ The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of th
 | MCP check | computational sensor for the MCP files | `scripts/check-mcp.py` | Same | Plugin repo, not a component |
 | Plugin evals | test for the harness | `evals/` (`claude plugin eval`) | None | Plugin repo, not a component |
 | Steering loop | process | None | None | `CHANGELOG.md` in the plugin root |
-
-Notes:
-
-- Plugin agents cannot define `hooks`, `mcpServers`, or `permissionMode`. Client-specific agent files carry that configuration.
-- Copilot CLI reads its client-specific files from `com.github.copilot/`.
-- Claude Code reads `.claude-plugin/`, `agents/`, and `.mcp.json`.
-- An MCP server starts in the plugin root. It gets the project folder from a tool parameter.
-- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake. Copilot CLI before v1.0.81 predates 2026-07-28 support.
 
 ## Plugin tree
 
@@ -115,8 +107,5 @@ Each client reads these paths:
 - Agent Plugins clients and Copilot read `plugin.json`, `skills/`, `mcp.json`, and `com.github.copilot/`.
 - Claude Code reads `.claude-plugin/`, `skills/`, `agents/`, and `.mcp.json`.
 - Both clients read `.claude-plugin/marketplace.json`.
-- The `evals/` folder at the root is for `claude plugin eval`. The folders `skills/<skill-name>/evals/` are for the Agent Skills eval format. The two eval systems use different file formats.
 
-In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose. `<inspector-version>` is the Inspector version that the MCP check pins.
-
-The scripts use Python 3.11 or later and only the Python standard library. An MCP server in `servers/` is the one exception. It declares the MCP SDK in its script header, and `uv` installs it. `fixture.sh` is the only shell script, because `claude plugin eval` requires Bash.
+In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose.

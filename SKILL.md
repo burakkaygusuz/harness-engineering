@@ -6,15 +6,15 @@ compatibility: Requires Python 3.11 or later. Uses the claude CLI (version 2.1.2
 
 # Harness engineering
 
-Use this skill to build an agent harness for one code project. A harness is everything in an agent except the model. The harness has guides, which steer the agent before it acts, and sensors, which observe the agent after it acts. The plugin carries the harness for Claude Code and GitHub Copilot. Read `references/harness.md` for the model and the mapping from each harness part to a file.
+Use this skill to build an agent harness for one code project. A harness is everything in an agent except the model. The harness has guides, which steer the agent before it acts, and sensors, which observe the agent after it acts. The plugin carries the harness for Claude Code and GitHub Copilot. Read `references/harness.md` for the model and the file of each harness part.
 
 The examples in the reference files use placeholders such as `<plugin-name>` and `<skill-name>`. Replace each placeholder with the name that the user gives.
 
 ## Workflow
 
-1. Analyze the project. Find the test, lint, and type-check commands. A project without these commands has no computational sensor to build on. Tell the user what is missing.
+1. Analyze the project. Find the test, lint, and type-check commands. Without these commands, the harness has no computational sensor. Tell the user which commands the project does not have.
 2. Ask the user for the plugin name, the skill names, and the purpose of each skill. Ask which skills need an agent file.
-3. Read `references/rules.md`. Check the plugin name against the rules. Do not use a reserved name.
+3. Read `references/rules.md`. Follow these rules in each Part. Check the plugin name against the rules now.
 4. Read `references/harness.md` to see the target folder tree.
 5. Do the procedure in order. Read each file only when you reach its Part:
    - Parts A and B, folders and manifests (packaging): `references/procedure-scaffold.md`
@@ -24,8 +24,6 @@ The examples in the reference files use placeholders such as `<plugin-name>` and
    - Parts F and G, skill evals and plugin evals: `references/procedure-evals.md`
    - Parts H and I, validation, release, and the final checklist: `references/procedure-release.md`
 6. After each Part, check the result before you start the next Part.
-7. Write all new text in the style of ASD-STE100 Simplified Technical English. Use short sentences, the imperative form, and the active voice.
-8. Write scripts in Python. Use the `.py` extension. Shell scripts are allowed only where `references/rules.md` says so.
 
 ## Validation
 
@@ -35,6 +33,8 @@ Run these commands from the project root:
 skills-ref validate skills/<skill-name>
 claude plugin validate . --strict
 ```
+
+If the plugin has `mcp.json`, also run `python3 scripts/check-mcp.py`.
 
 Run `claude plugin eval . --scaffold --allow-tools Bash Write Edit` only when the user agrees. This command makes model calls and costs money.
 
@@ -47,4 +47,4 @@ Run `claude plugin eval . --scaffold --allow-tools Bash Write Edit` only when th
 - Grant `Bash` to the plugin evals only with `--allow-tools`. Do not list it in `prompt.md`.
 - Add no packages to the scripts. Use only the Python standard library. The one exception is an MCP server in `servers/`. It declares the `mcp` SDK in its script header.
 - Do not write a `print` call in an MCP server. Standard output carries only MCP messages.
-- Apply the gate in `references/procedure-mcp.md` before you add an MCP server. The default outcome is no server.
+- Apply the rules in `references/rules.md`, section "MCP servers", before you add an MCP server. The default outcome is no server.

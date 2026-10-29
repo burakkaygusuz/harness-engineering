@@ -26,6 +26,10 @@ Copy the `harness-engineering` folder into the skills folder of your client. For
 
 Ask the agent to set up an agent harness for your project. The agent loads the skill and follows the procedure in `references/`.
 
+## Style
+
+The skill text follows ASD-STE100 Simplified Technical English, Issue 9. The author did not compare each word with the official dictionary. A full check needs the official dictionary from the ASD-STE100 website.
+
 ## Sources
 
 The skill files do not cite their sources. The agent reads them at run time, and a citation does not change what the agent does. Each token that the agent does not need costs context. See [Agent Skills best practices](https://agentskills.io/skill-creation/best-practices) and [Claude skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices).

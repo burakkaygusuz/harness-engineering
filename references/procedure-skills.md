@@ -44,7 +44,7 @@ Do steps 1 to 8 for each skill.
    ```
 
 4. Add the `--help` option to the script. Use `argparse` from the Python standard library. Show the usage and the exit codes in the help text.
-5. Make the script write JSON to standard output. Write messages and errors to standard error. Use a different exit code for each error type.
+5. Make the script write JSON to standard output. Use a different exit code for each error type.
 6. Write the role text in `skills/<skill-name>/references/role.md`. The role text tells the agent what its job is and how to report. Start the role text with this step: read `AGENTS.md` at the project root, if the file exists. A Copilot subagent does not get the project instructions by default, and VS Code does not apply `include-custom-instructions` to plugin agents. The script `sync-agents.py` copies this file into the agent files.
 7. Write the other long text in `skills/<skill-name>/references/<topic>.md`. Tell the agent in `SKILL.md` when to read each file.
 8. Write each template in `skills/<skill-name>/assets/<template>.md`.

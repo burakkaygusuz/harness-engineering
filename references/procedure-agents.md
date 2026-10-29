@@ -31,5 +31,5 @@ Do steps 1 to 4 for each agent. Give an agent only the tools that its role needs
 3. Do not write a `model` field in the agent files, unless the agent needs a specific model. Then write the `model` field in both files. The two clients use different values for the same model. Do not copy the value from one file to the other.
    - Claude Code: `sonnet`, `opus`, `haiku`, `fable`, a full model ID, or `inherit`.
    - Copilot: a Copilot model ID. Do not use `model-policy`. VS Code does not apply it to plugin agents.
-4. Write the script `scripts/sync-agents.py`. The script must copy each `references/role.md` file into the body of the matching agent files. The script must not change the frontmatter. The two formats use different frontmatter fields. Each client ignores the agent files of the other client.
+4. Write the script `scripts/sync-agents.py`. The script must copy each `references/role.md` file into the body of the agent files that match. The script must not change the frontmatter. The two formats use different frontmatter fields. Each client ignores the agent files of the other client.
 5. Add the option `--check` to the script. The option shows the differences and does not change files.

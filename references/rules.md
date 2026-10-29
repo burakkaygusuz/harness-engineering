@@ -1,6 +1,6 @@
 # Rules to follow
 
-Write all text in the style of ASD-STE100 Issue 9. The author did not compare each word with the official dictionary. A full check needs the official dictionary from the ASD-STE100 website.
+Write all new text in the style of ASD-STE100 Simplified Technical English, Issue 9. Use short sentences, the imperative form, and the active voice.
 
 ## Names
 
@@ -17,7 +17,7 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 ## Folders
 
 - Put each skill folder directly in `skills/`. The clients do not search deeper folders.
-- Put the Claude Code agent files in `agents/`.
+- Put the agent files for Claude Code in `agents/`.
 - Put the Copilot agent files in `com.github.copilot/agents/`.
 - Do not put other files in `skills/`.
 
@@ -45,13 +45,15 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 - The Agent Plugins specification does not define agents as a portable component. Do not list agents in the root manifest.
 - Claude Code adds the plugin name to the name of each component. The agent `<agent-name>` becomes `<plugin-name>:<agent-name>`.
 - Write both names in the instructions of each `SKILL.md` file.
+- Claude Code ignores the fields `permissionMode`, `hooks`, `mcpServers`, and `initialPrompt` in a plugin agent file. Add hooks and MCP servers to the plugin instead.
 
 ## MCP servers
 
 - Do not add an MCP server by default. Give the agent the project's commands, scripts, and CLIs first.
 - Make an action that must run on every event a hook, not a tool.
 - Add an MCP server only for external data or actions, such as a database.
-- Do not make a tool that merely wraps existing software functionality or an API endpoint.
+- Do not make a tool that only wraps software functionality or an API endpoint that already exists.
+- Do not add an MCP server for an end-to-end behavior check of the product.
 - Each tool adds text to the context. More tools do not always lead to better outcomes. Keep the number of tools low.
 - Reject a server that answers only the earlier handshake. MCP 2026-07-28 requires `server/discover`.
 - Serve both protocol eras. A server that serves only 2026-07-28 fails for a client that uses only the earlier handshake.
@@ -62,15 +64,18 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 - Set `"type": "stdio"` for each server.
 - Write `command` as a bare program name, such as `uv` or `npx`. The Agent Plugins format does not replace variables in `command`.
 - Write the plugin root variable only in `args` and `env` values. Use `${PLUGIN_ROOT}` in `mcp.json` and `${CLAUDE_PLUGIN_ROOT}` in `.mcp.json`. Claude Code does not replace it in `cwd`.
-- The server starts in the plugin root, not in the project. Take the project folder as a tool parameter.
+- The server starts in the plugin root, not in the project. Take the project folder as the `project_dir` parameter of each tool.
+- Do not use Roots, Sampling, or Logging in a server. They are deprecated. Tool parameters replace Roots.
+- Do not use `ctx.elicit()`. It fails on a 2026-07-28 connection. When a tool must ask the user, use `Resolve` or `Elicit` from `mcp.server.mcpserver`.
+- Write no protocol code in a server. The SDK answers `server/discover` on stdio and serves both protocol eras.
 
 ## Skill content
 
 - Keep each `SKILL.md` file under 500 lines and under 5,000 tokens.
 - Use only these fields in the frontmatter of `SKILL.md`: `name`, `description`, `license`, `allowed-tools`, `metadata`, and `compatibility`. `skills-ref validate` fails on other fields.
-- Add a `## Gotchas` section to `SKILL.md` for facts that the agent gets wrong without a warning. Add each correction from the evals to this section.
+- Add a `## Gotchas` section to `SKILL.md` for facts that the agent gets wrong without a warning.
 - Cut each instruction that the agent follows correctly without it.
-- If a skill makes the agent change files or data, add a step that checks the result. Make the agent fix the problem and check again until the check passes.
+- If a skill makes the agent change files or data, add a step that checks the result. Make the agent fix the problem. Then make the agent check again. Do this until the check passes.
 - Put long text in the `references/` folder.
 - Tell the agent in `SKILL.md` when to read each reference file.
 - Write relative paths from the skill folder in links to reference files. Use one folder level.
@@ -80,10 +85,10 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 ## Scripts
 
 - Write each script in Python. Use the `.py` extension. Run it with `python3`.
-- A shell script is allowed only for `fixture.sh`. Claude Code requires `fixture.sh` to be a Bash script.
+- Use a shell script only for `fixture.sh`. Claude Code requires `fixture.sh` to be a Bash script.
 - Use only the Python standard library in scripts. Do not add packages. Then the scripts have no install step, no `requirements.txt`, and no `pyproject.toml`.
 - Write the data to standard output. Write messages and errors to standard error.
-- An MCP server that you write is the one exception. It uses the official `mcp` Python SDK 2.x, `mcp>=2,<3`, declared inline (PEP 723) and locked with `uv lock --script`. It writes only MCP messages to standard output and writes logs to standard error.
+- An MCP server that you write is the one exception. It uses the official Python SDK for MCP, version 2.x (`mcp>=2,<3`). Declare the SDK in the script header (PEP 723). Lock it with `uv lock --script`. It writes only MCP messages to standard output and writes logs to standard error.
 - Write the Python version in the `compatibility` field of each `SKILL.md` file that runs a Python script.
 
 ## Evals
