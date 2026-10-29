@@ -19,13 +19,9 @@ The examples in the reference files use placeholders such as `<plugin-name>` and
 3. Read `references/rules.md`. Follow these rules in each Part. Check the plugin name against the rules now.
 4. Read `references/harness.md` to see the target folder tree.
 5. Do the procedure in order. Read each file only when you reach its Part:
-   - Parts A and B, folders and manifests (packaging): `references/procedure-scaffold.md`
-   - Part C, skills (guides): `references/procedure-skills.md`
-   - Part D, MCP servers (guide tools, optional): `references/procedure-mcp.md`
-   - Part E, agent files (inferential sensors): `references/procedure-agents.md`
-   - Parts F and G, skill evals and plugin evals: `references/procedure-evals.md`
-   - Part J, `AGENTS.md` (project guide): `references/procedure-agents-md.md`
-   - Parts H and I, validation, release, and the final checklist: `references/procedure-release.md`
+   - Parts A to D, folders, manifests, skills, and `AGENTS.md`: `references/procedure-core.md`
+   - Parts E to H, MCP servers, agent files, skill evals, and plugin evals: `references/procedure-components.md`. Do only the Parts for the components that the plugin needs.
+   - Parts I and J, validation, release, and the final checklist: `references/procedure-release.md`
 6. After each Part, check the result before you start the next Part.
 
 ## Validation

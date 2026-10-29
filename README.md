@@ -5,9 +5,10 @@ An agent skill that guides an agent through the build of an agent harness for a 
 ## Contents
 
 - `SKILL.md`: the skill. It has the workflow and the validation commands.
+- `scripts/check-mcp.py`: the MCP check. The agent copies it into a plugin that has MCP servers.
 - `references/`: focused files that the agent reads only when needed:
   - `rules.md` and `harness.md`: the rules, and the harness model with the target folder tree.
-  - `procedure-*.md`: the steps for each Part of the setup.
+  - `procedure-*.md`: the steps for each Part of the setup. Core Parts, optional component Parts, and release.
 
 ## Requirements
 
