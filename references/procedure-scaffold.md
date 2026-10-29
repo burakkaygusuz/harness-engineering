@@ -6,7 +6,7 @@
 2. Run these commands. Replace `<plugin-name>` and `<skill-name>` with your names. Run the last two commands again for each skill.
 
    ```bash
-   mkdir -p <plugin-name>/{.claude-plugin,agents,com.github.copilot/agents,scripts}
+   mkdir -p <plugin-name>/{.claude-plugin,.agents/plugins,agents,com.github.copilot/agents,scripts}
    mkdir -p <plugin-name>/evals/unrelated-request/graders
    cd <plugin-name>
    mkdir -p skills/<skill-name>/{scripts,references,assets,evals/files}
@@ -53,4 +53,20 @@ The three manifests use the same `name` and the same `description`.
    }
    ```
 
-4. Create `LICENSE` with the full text of the license in `plugin.json`. Create `README.md`. In it, write what the plugin does and how to install it. Create `CHANGELOG.md` with one entry for version `0.1.0`.
+4. Create the file `.agents/plugins/marketplace.json` for Codex. Use the same `name` as in the manifests. Use this content:
+
+   ```json
+   {
+     "name": "<plugin-name>",
+     "plugins": [
+       {
+         "name": "<plugin-name>",
+         "source": { "source": "local", "path": "./" },
+         "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+         "category": "Productivity"
+       }
+     ]
+   }
+   ```
+
+5. Create `LICENSE` with the full text of the license in `plugin.json`. Create `README.md`. In it, write what the plugin does and how to install it. Create `CHANGELOG.md` with one entry for version `0.1.0`.

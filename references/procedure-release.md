@@ -36,7 +36,16 @@
    ```
 
 9. Start Copilot CLI. Make sure that the agents `<agent-name>` and the skills exist.
-10. Make the project a git repository. Run `git init`. Then commit the files. You can also push the project to a remote. VS Code accepts only git repositories as marketplaces. In VS Code, add the repository to `chat.plugins.marketplaces`. For a local copy, use a `file:///` path. Install the plugin from the `@agentPlugins` view. Make sure that the agents and the skills appear.
+10. Test the same install in Codex:
+
+    ```bash
+    codex plugin marketplace add .
+    codex plugin add <plugin-name>@<plugin-name>
+    codex plugin marketplace list
+    ```
+
+11. Start Codex. Make sure that the skills exist.
+12. Make the project a git repository. Run `git init`. Then commit the files. You can also push the project to a remote. VS Code accepts only git repositories as marketplaces. In VS Code, add the repository to `chat.plugins.marketplaces`. For a local copy, use a `file:///` path. Install the plugin from the `@agentPlugins` view. Make sure that the agents and the skills appear.
 
 ## Part I. Release
 
@@ -55,3 +64,4 @@
 - [ ] `evals/results/` and `.workspace/` are in `.gitignore`.
 - [ ] Both clients show the skills and the agents.
 - [ ] A marketplace install shows the skills and the agents in Claude Code, Copilot CLI, and VS Code.
+- [ ] A marketplace install shows the skills in Codex.

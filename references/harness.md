@@ -50,6 +50,9 @@ This is the tree of the plugin that the skill generates today. Each part has a h
 ├── .claude-plugin/
 │   ├── plugin.json                    # packaging: Claude Code manifest
 │   └── marketplace.json               # packaging: marketplace catalog
+├── .agents/
+│   └── plugins/
+│       └── marketplace.json           # packaging: Codex marketplace catalog
 │
 ├── skills/                            # both formats read this folder
 │   └── <skill-name>/                  # folder name = `name` in SKILL.md
@@ -108,9 +111,9 @@ Each client reads these paths:
 - Claude Code reads `.claude-plugin/`, `skills/`, `agents/`, and `.mcp.json`.
 - Both clients read `.claude-plugin/marketplace.json`.
 - Cursor and Codex read the root `plugin.json` and `skills/`. Both also read `AGENTS.md`.
-- Cursor and Codex read `mcp.json`. Cursor does not replace `${PLUGIN_ROOT}` in it. No Codex document confirms the replacement.
+- Cursor and Codex read `mcp.json`. Cursor does not replace `${PLUGIN_ROOT}` in it. The source code of Codex replaces it, but no Codex release is confirmed to include it.
 - Cursor reads agents from `.cursor/agents/`. Codex reads only TOML agents from `.codex/agents/`. A plugin does not carry them.
-- Codex reads its marketplace from `.agents/plugins/marketplace.json`.
-- The skill generates none of the Cursor and Codex files in the last three items. It supports the skills of the plugin in Cursor and Codex.
+- Codex reads its marketplace from `.agents/plugins/marketplace.json`. The ChatGPT desktop app installs the plugin from it.
+- The skill generates no Cursor files and no Codex agent files. For these clients it supports the skills and `mcp.json` of the plugin.
 
 In the tree, `<skill-name>` is the name of one skill. Repeat the folder for each skill. `<agent-name>` is the name of one agent. `<script-name>`, `<server-name>`, and `<topic>` are names that you choose.
