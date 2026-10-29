@@ -48,21 +48,21 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 
 ## MCP servers
 
-- Do not add an MCP server by default. Give the agent the project's commands, scripts, and CLIs first. [OpenAI] [Hashimoto]
-- Make an action that must run on every event a hook, not a tool. This rule has one source. [Claude features overview]
-- Add an MCP server only for external data or actions, such as a database. This rule has one source. [Claude features overview]
-- Do not make a tool that merely wraps existing software functionality or an API endpoint. This rule has one source. [Anthropic writing tools]
-- Each tool adds text to the context. More tools do not always lead to better outcomes. Keep the number of tools low. [Anthropic code execution with MCP] [Anthropic writing tools]
-- Reject a server that answers only the earlier handshake. MCP 2026-07-28 requires `server/discover`. This rule has one source. [MCP changelog]
-- Serve both protocol eras. A server that serves only 2026-07-28 fails for a client that uses only the earlier handshake. [MCP versioning] [Claude MCP]
-- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake. [Claude MCP]
-- Copilot CLI before v1.0.81 predates 2026-07-28 support. [GitHub Copilot CLI release 1.0.81]
-- Claude Code reads `.mcp.json`. The Agent Plugins format uses `mcp.json`. The two formats are different. [Claude Code plugin reference] [Agent Plugins specification]
-- Set `$schema` in `mcp.json` to the Agent Plugins MCP schema of the same version as `plugin.json`. Copilot CLI requires the two versions to be the same. [Agent Plugins specification] [GitHub Copilot CLI plugin reference]
-- Set `"type": "stdio"` for each server. [Agent Plugins MCP schema]
-- Write `command` as a bare program name, such as `uv` or `npx`. The Agent Plugins format does not replace variables in `command`. [Agent Plugins specification]
-- Write the plugin root variable only in `args` and `env` values. Use `${PLUGIN_ROOT}` in `mcp.json` and `${CLAUDE_PLUGIN_ROOT}` in `.mcp.json`. Claude Code does not replace it in `cwd`. [Agent Plugins specification] [Claude Code plugin reference]
-- The server starts in the plugin root, not in the project. Take the project folder as a tool parameter. [Agent Plugins specification] [MCP deprecated features]
+- Do not add an MCP server by default. Give the agent the project's commands, scripts, and CLIs first.
+- Make an action that must run on every event a hook, not a tool.
+- Add an MCP server only for external data or actions, such as a database.
+- Do not make a tool that merely wraps existing software functionality or an API endpoint.
+- Each tool adds text to the context. More tools do not always lead to better outcomes. Keep the number of tools low.
+- Reject a server that answers only the earlier handshake. MCP 2026-07-28 requires `server/discover`.
+- Serve both protocol eras. A server that serves only 2026-07-28 fails for a client that uses only the earlier handshake.
+- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake.
+- Copilot CLI before v1.0.81 predates 2026-07-28 support.
+- Claude Code reads `.mcp.json`. The Agent Plugins format uses `mcp.json`. The two formats are different.
+- Set `$schema` in `mcp.json` to the Agent Plugins MCP schema of the same version as `plugin.json`. Copilot CLI requires the two versions to be the same.
+- Set `"type": "stdio"` for each server.
+- Write `command` as a bare program name, such as `uv` or `npx`. The Agent Plugins format does not replace variables in `command`.
+- Write the plugin root variable only in `args` and `env` values. Use `${PLUGIN_ROOT}` in `mcp.json` and `${CLAUDE_PLUGIN_ROOT}` in `.mcp.json`. Claude Code does not replace it in `cwd`.
+- The server starts in the plugin root, not in the project. Take the project folder as a tool parameter.
 
 ## Skill content
 
@@ -83,7 +83,7 @@ Write all text in the style of ASD-STE100 Issue 9. The author did not compare ea
 - A shell script is allowed only for `fixture.sh`. Claude Code requires `fixture.sh` to be a Bash script.
 - Use only the Python standard library in scripts. Do not add packages. Then the scripts have no install step, no `requirements.txt`, and no `pyproject.toml`.
 - Write the data to standard output. Write messages and errors to standard error.
-- An MCP server that you write is the one exception. It uses the official `mcp` Python SDK 2.x, `mcp>=2,<3`, declared inline (PEP 723) and locked with `uv lock --script`. It writes only MCP messages to standard output and writes logs to standard error. [MCP stdio transport] [uv scripts guide]
+- An MCP server that you write is the one exception. It uses the official `mcp` Python SDK 2.x, `mcp>=2,<3`, declared inline (PEP 723) and locked with `uv lock --script`. It writes only MCP messages to standard output and writes logs to standard error.
 - Write the Python version in the `compatibility` field of each `SKILL.md` file that runs a Python script.
 
 ## Evals

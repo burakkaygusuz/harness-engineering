@@ -4,29 +4,29 @@ This file explains the harness model. It maps each harness part to a file in the
 
 ## The model
 
-An agent harness is everything in an agent except the model. Agent = Model + Harness. [Böckeler]
+An agent harness is everything in an agent except the model. Agent = Model + Harness.
 
 The skill builds the outer harness for one code project. The outer harness has two kinds of control:
 
-- Guides. Feedforward controls. A guide steers the agent before it acts. Examples: `AGENTS.md`, skills, bootstrap scripts. [Böckeler]
-- Sensors. Feedback controls. A sensor observes the agent after it acts. The agent uses the sensor output to self-correct. Examples: tests, linters, type checkers, AI review. [Böckeler]
+- Guides. Feedforward controls. A guide steers the agent before it acts. Examples: `AGENTS.md`, skills, bootstrap scripts.
+- Sensors. Feedback controls. A sensor observes the agent after it acts. The agent uses the sensor output to self-correct. Examples: tests, linters, type checkers, AI review.
 
-Use both kinds. A harness with only sensors repeats the same mistakes. A harness with only guides never finds out whether its rules work. This rule has one source. [Böckeler]
+Use both kinds. A harness with only sensors repeats the same mistakes. A harness with only guides never finds out whether its rules work.
 
 Each guide and sensor is one of two types:
 
-- Computational. Deterministic and fast. Examples: tests, linters, type checkers. [Böckeler]
-- Inferential. Semantic and slower. Examples: AI code review, an LLM as judge. [Böckeler]
+- Computational. Deterministic and fast. Examples: tests, linters, type checkers.
+- Inferential. Semantic and slower. Examples: AI code review, an LLM as judge.
 
-Write sensor output for the model. A failing check tells the agent how to fix the problem. [OpenAI] [Böckeler]
+Write sensor output for the model. A failing check tells the agent how to fix the problem.
 
-Put checks early. Fast checks run before a commit. Slow checks run later. This rule has one source. [Böckeler]
+Put checks early. Fast checks run before a commit. Slow checks run later.
 
-The steering loop: when an issue happens more than once, improve the guides or sensors. The human steers the harness. [Böckeler] [OpenAI]
+The steering loop: when an issue happens more than once, improve the guides or sensors. The human steers the harness.
 
 ## The plugin as harness
 
-This interpretation is ours. The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of the plugin maps to a harness role (see the table below). Böckeler describes "harness templates" as a possible future form: "a bundle of guides and sensors that leash a coding agent to the structure, conventions and tech stack of a topology." [Böckeler]
+The plugin packages the harness as one Agent Plugins 1.0 plugin. Each part of the plugin maps to a harness role (see the table below). Böckeler describes "harness templates" as a possible future form: "a bundle of guides and sensors that leash a coding agent to the structure, conventions and tech stack of a topology."
 
 ## Mapping: harness part to file
 
@@ -42,11 +42,11 @@ This interpretation is ours. The plugin packages the harness as one Agent Plugin
 
 Notes:
 
-- Plugin agents cannot define `hooks`, `mcpServers`, or `permissionMode`. Client-specific agent files carry that configuration. [Claude Code plugin reference]
-- Copilot CLI reads its client-specific files from `com.github.copilot/`. [GitHub Copilot CLI plugin reference]
-- Claude Code reads `.claude-plugin/`, `agents/`, and `.mcp.json`. [Claude Code plugin reference]
-- An MCP server starts in the plugin root. It gets the project folder from a tool parameter. [Agent Plugins specification] [MCP deprecated features]
-- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake. Copilot CLI before v1.0.81 predates 2026-07-28 support. [Claude MCP] [GitHub Copilot CLI release 1.0.81]
+- Plugin agents cannot define `hooks`, `mcpServers`, or `permissionMode`. Client-specific agent files carry that configuration.
+- Copilot CLI reads its client-specific files from `com.github.copilot/`.
+- Claude Code reads `.claude-plugin/`, `agents/`, and `.mcp.json`.
+- An MCP server starts in the plugin root. It gets the project folder from a tool parameter.
+- Claude Code's v1 runtime and `MCP_PROTOCOL_NEGOTIATION=legacy` use only the earlier handshake. Copilot CLI before v1.0.81 predates 2026-07-28 support.
 
 ## Plugin tree
 

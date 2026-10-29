@@ -8,7 +8,6 @@ An agent skill that guides an agent through the build of an agent harness for a 
 - `references/`: focused files that the agent reads only when needed:
   - `rules.md` and `harness.md`: the rules, and the harness model with the target folder tree.
   - `procedure-*.md`: the steps for each Part of the setup.
-  - `sources.md`: the official documents.
 
 ## Requirements
 
@@ -26,6 +25,24 @@ Copy the `harness-engineering` folder into the skills folder of your client. For
 ## Use
 
 Ask the agent to set up an agent harness for your project. The agent loads the skill and follows the procedure in `references/`.
+
+## Sources
+
+The skill files do not cite their sources. The agent reads them at run time, and a citation does not change what the agent does. Each token that the agent does not need costs context. See [Agent Skills best practices](https://agentskills.io/skill-creation/best-practices) and [Claude skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices).
+
+The git history keeps the sources. Each commit that adds or changes a fact lists its sources in the commit body. To find the source of a line, run `git blame` on the line and read the commit body.
+
+These rules apply to the sources:
+
+- A design rule in the skill needs two or more independent Tier 1 or Tier 2 sources. A commit that adds a rule with only one source says so.
+- The model terms come from Böckeler: harness, guide, sensor, computational, inferential, and steering loop. A definition needs one source.
+- File formats and client behavior come only from official documents.
+
+The tiers:
+
+- Tier 1: first-party engineering posts and formats, from OpenAI, Anthropic, LangChain, and Cursor, and the AGENTS.md format.
+- Tier 2: recognized practitioners: Birgitta Böckeler and Mitchell Hashimoto.
+- Tier 3: a reading list. No claim in the skill rests on it: [learn-harness-engineering](https://github.com/walkinglabs/learn-harness-engineering) and [awesome-harness-engineering](https://github.com/walkinglabs/awesome-harness-engineering).
 
 ## License
 

@@ -48,7 +48,3 @@ Run `claude plugin eval . --scaffold --allow-tools Bash Write Edit` only when th
 - Add no packages to the scripts. Use only the Python standard library. The one exception is an MCP server in `servers/`. It declares the `mcp` SDK in its script header.
 - Do not write a `print` call in an MCP server. Standard output carries only MCP messages.
 - Apply the gate in `references/procedure-mcp.md` before you add an MCP server. The default outcome is no server.
-
-## Sources
-
-Read `references/sources.md` to find the official documents and the harness engineering sources that this skill follows.
